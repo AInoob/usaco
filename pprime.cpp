@@ -36,6 +36,33 @@ bool prime(int num)
     return true;
 }
 
+int outOfRange(int num)
+{
+    if(num<100)
+        return num;
+    tempInt1=num;
+    tempInt2=0;
+    while(tempInt1>=100)
+    {
+        tempInt1/=100;
+        ++tempInt2;
+    }
+    if(tempInt1>=10)
+    {
+        tempInt1=1;
+        while(tempInt2>=0)
+        {
+            tempInt1*=100;
+            --tempInt2;
+        }
+        return tempInt1+1;
+    }
+    else
+    {
+        return num;
+    }
+}
+
 int main()
 {
     fin>>a>>b;
@@ -43,6 +70,7 @@ int main()
         ++a;
     for(int i=a;i<=b;i+=2)
     {
+        i=outOfRange(i);
         if(pal(i)&&prime(i))
             fout<<i<<endl;
     }
